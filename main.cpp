@@ -28,10 +28,10 @@ public:
     }
 
     void deposit(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 account.balance += amount;
-                std::cout << "Deposited " << amount << " into " << accountHolder << "'s account." << std::endl;
+                std::cout << "Deposited " << amount << " doubleo " << accountHolder << "'s account." << std::endl;
                 return;
             }
         }
@@ -40,7 +40,7 @@ public:
     }
 
     void withdraw(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 if (account.balance >= amount) {
                     account.balance -= amount;
@@ -55,10 +55,10 @@ public:
     }
 
     void transfer(const std::string& fromAccountHolder, const std::string& toAccountHolder, double amount) override {
-        for (auto& fromAccount : accounts) {
+        for (Account& fromAccount : accounts) {
             if (fromAccount.holder == fromAccountHolder) {
                 if (fromAccount.balance >= amount) {
-                    for (auto& toAccount : accounts) {
+                    for (Account& toAccount : accounts) {
                         if (toAccount.holder == toAccountHolder) {
                             fromAccount.balance -= amount;
                             toAccount.balance += amount;
@@ -79,7 +79,7 @@ public:
     }
 
     void displayBalance(const std::string& accountHolder) override {
-        for (const auto& account : accounts) {
+        for (const Account& account : accounts) {
             if (account.holder == accountHolder) {
                 std::cout << accountHolder << "'s account balance: " << account.balance << std::endl;
                 return;
@@ -104,10 +104,10 @@ public:
     }
 
     void deposit(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 account.balance += amount;
-                std::cout << "Deposited " << amount << " into " << accountHolder << "'s account." << std::endl;
+                std::cout << "Deposited " << amount << " doubleo " << accountHolder << "'s account." << std::endl;
                 return;
             }
         }
@@ -115,7 +115,7 @@ public:
     }
 
     void withdraw(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 if (account.balance >= amount) {
                     account.balance -= amount;
@@ -130,10 +130,10 @@ public:
     }
 
     void transfer(const std::string& fromAccountHolder, const std::string& toAccountHolder, double amount) override {
-        for (auto& fromAccount : accounts) {
+        for (Account& fromAccount : accounts) {
             if (fromAccount.holder == fromAccountHolder) {
                 if (fromAccount.balance >= amount) {
-                    for (auto& toAccount : accounts) {
+                    for (Account& toAccount : accounts) {
                         if (toAccount.holder == toAccountHolder) {
                             fromAccount.balance -= amount;
                             toAccount.balance += amount;
@@ -154,7 +154,7 @@ public:
     }
 
     void displayBalance(const std::string& accountHolder) override {
-        for (const auto& account : accounts) {
+        for (const Account& account : accounts) {
             if (account.holder == accountHolder) {
                 std::cout << accountHolder << "'s account balance: " << account.balance << std::endl;
                 return;
@@ -179,10 +179,10 @@ public:
     }
 
     void deposit(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 account.balance += amount;
-                std::cout << "Deposited " << amount << " into " << accountHolder << "'s account." << std::endl;
+                std::cout << "Deposited " << amount << " doubleo " << accountHolder << "'s account." << std::endl;
                 return;
             }
         }
@@ -190,7 +190,7 @@ public:
     }
 
     void withdraw(const std::string& accountHolder, double amount) override {
-        for (auto& account : accounts) {
+        for (Account& account : accounts) {
             if (account.holder == accountHolder) {
                 if (account.balance >= amount) {
                     account.balance -= amount;
@@ -205,10 +205,10 @@ public:
     }
 
     void transfer(const std::string& fromAccountHolder, const std::string& toAccountHolder, double amount) override {
-        for (auto& fromAccount : accounts) {
+        for (Account& fromAccount : accounts) {
             if (fromAccount.holder == fromAccountHolder) {
                 if (fromAccount.balance >= amount) {
-                    for (auto& toAccount : accounts) {
+                    for (Account& toAccount : accounts) {
                         if (toAccount.holder == toAccountHolder) {
                             fromAccount.balance -= amount;
                             toAccount.balance += amount;
@@ -229,7 +229,7 @@ public:
     }
 
     void displayBalance(const std::string& accountHolder) override {
-        for (const auto& account : accounts) {
+        for (const Account& account : accounts) {
             if (account.holder == accountHolder) {
                 std::cout << accountHolder << "'s account balance: " << account.balance << std::endl;
                 return;
@@ -243,10 +243,11 @@ int main() {
     MBBank MBBank;
     VietinBank VietinBank;
     AgriBank AgriBank;
-    // int chooseBank;
-    int_fast32_t chooseBank;
+    // double chooseBank;
+    int chooseBank;
     std::string name;
-    int balance = 1000;
+    double balance = 1000;
+    std::string who;
     std::cout << "Choose the name" << std::endl;
     std::cin >> name;
 
@@ -264,29 +265,31 @@ int main() {
                 << "2. withdraw" << std::endl
                 << "3. transfer" << std::endl;
         std::cin >> chooseFunc;
-        if(chooseBank == 1) {
-            int deposit;
+        if(chooseFunc == 1) {
+            double deposit;
             std::cout << "How much money do you want to deposit?" << std::endl;
             std::cin >> deposit;
             MBBank.deposit(name, deposit);
             MBBank.displayBalance(name);
         }
-        if(chooseBank == 2) {
-            int withdraw;
+        else if(chooseFunc == 2) {
+            double withdraw;
             std::cout << "How much money do you want to withdraw?" << std::endl;
             std::cin >> withdraw;
-            MBBank.deposit(name, withdraw);
+            MBBank.withdraw(name, withdraw);
             MBBank.displayBalance(name);
         }
-        if(chooseBank == 3) {
-            int transfer;
+        else if(chooseFunc == 3) {
+            double transfer;
+            std::cout << "Which account?" << std::endl;
+            std::cin >> who;
             std::cout << "How much money do you want to transfer?" << std::endl;
             std::cin >> transfer;
-            MBBank.deposit(name, transfer);
+            MBBank.transfer(name, who, transfer);
             MBBank.displayBalance(name);
         }
     }
-    if(chooseBank == 2) {
+    else if(chooseBank == 2) {
         std::cout << "You have already $1000" << std::endl;
         VietinBank.createAccount("Vietinbank", name, balance);
         int chooseFunc;
@@ -295,29 +298,31 @@ int main() {
                 << "2. withdraw" << std::endl
                 << "3. transfer" << std::endl;
         std::cin >> chooseFunc;
-        if(chooseBank == 1) {
-            int deposit;
+        if(chooseFunc == 1) {
+            double deposit;
             std::cout << "How much money do you want to deposit?" << std::endl;
             std::cin >> deposit;
             VietinBank.deposit(name, deposit);
             VietinBank.displayBalance(name);
         }
-        if(chooseBank == 2) {
-            int withdraw;
+        else if(chooseFunc == 2) {
+            double withdraw;
             std::cout << "How much money do you want to withdraw?" << std::endl;
             std::cin >> withdraw;
-            VietinBank.deposit(name, withdraw);
+            VietinBank.withdraw(name, withdraw);
             VietinBank.displayBalance(name);
         }
-        if(chooseBank == 3) {
-            int transfer;
+        else if(chooseFunc == 3) {
+            double transfer;
+            std::cout << "Which account?" << std::endl;
+            std::cin >> who;
             std::cout << "How much money do you want to transfer?" << std::endl;
             std::cin >> transfer;
-            VietinBank.deposit(name, transfer);
+            VietinBank.transfer(name, who, transfer);
             VietinBank.displayBalance(name);
         }
     }
-    if(chooseBank == 3) {
+    else if(chooseBank == 3) {
         std::cout << "You have already $1000" << std::endl;
         AgriBank.createAccount("Agribank", name, balance);
         int chooseFunc;
@@ -326,25 +331,27 @@ int main() {
                 << "2. withdraw" << std::endl
                 << "3. transfer" << std::endl;
         std::cin >> chooseFunc;
-        if(chooseBank == 1) {
-            int deposit;
+        if(chooseFunc == 1) {
+            double deposit;
             std::cout << "How much money do you want to deposit?" << std::endl;
             std::cin >> deposit;
             AgriBank.deposit(name, deposit);
             AgriBank.displayBalance(name);
         }
-        if(chooseBank == 2) {
-            int withdraw;
+        else if(chooseFunc == 2) {
+            double withdraw;
             std::cout << "How much money do you want to withdraw?" << std::endl;
             std::cin >> withdraw;
-            AgriBank.deposit(name, withdraw);
+            AgriBank.withdraw(name, withdraw);
             AgriBank.displayBalance(name);
         }
-        if(chooseBank == 3) {
-            int transfer;
+        else if(chooseFunc == 3) {
+            double transfer;
+            std::cout << "Which account?" << std::endl;
+            std::cin >> who;
             std::cout << "How much money do you want to transfer?" << std::endl;
             std::cin >> transfer;
-            AgriBank.deposit(name, transfer);
+            AgriBank.transfer(name, who, transfer);
             AgriBank.displayBalance(name);
         }
     }
