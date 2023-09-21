@@ -1,4 +1,5 @@
-// về các ngân hàng tên khác nhau. Cho phép chọn ngân hàng rồi thực hiện các thao tác. Tạo tk, thêm, chuyển,...
+// Create a program that allow user choose the name of bank, createAccount, deposit, withdraw, transfer, displayBalance
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,10 +7,10 @@
 class Bank {
 public:
     // pure virtual functions
-    virtual void createAccount(const std::string& bank, const std::string& accountHolder, double Balance) = 0; // tao tai khoan
-    virtual void deposit(const std::string& accountHolder, double amount) = 0; // tien gui
-    virtual void withdraw(const std::string& accountHolder, double amount) = 0;  // rut
-    virtual void transfer(const std::string& fromAccountHolder, const std::string& toAccountHolder, double amount) = 0; // chuyen tien
+    virtual void createAccount(const std::string& bank, const std::string& accountHolder, double Balance) = 0; 
+    virtual void deposit(const std::string& accountHolder, double amount) = 0; 
+    virtual void withdraw(const std::string& accountHolder, double amount) = 0;  
+    virtual void transfer(const std::string& fromAccountHolder, const std::string& toAccountHolder, double amount) = 0; 
     virtual void displayBalance(const std::string& accountHolder) = 0;
 };
 
@@ -355,7 +356,5 @@ int main() {
             AgriBank.displayBalance(name);
         }
     }
-
-
     return 0;
 }
